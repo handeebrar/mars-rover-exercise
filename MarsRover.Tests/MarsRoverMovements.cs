@@ -1,6 +1,6 @@
-using System;
 using System.Collections.Generic;
 using MarsRover.Constants;
+using MarsRover.Models;
 using Xunit;
 
 namespace MarsRover.Tests
@@ -10,56 +10,61 @@ namespace MarsRover.Tests
         [Fact]
         public void SpinLeft()
         {
-            Entities.MarsRover marsRover = new Entities.MarsRover(1,2,"N");
+            Models.MarsRover marsRover = new Models.MarsRover();
+            Rover rover = new Rover(1, 2, "N");
 
-            marsRover.SpinLeft();
+            marsRover.SpinLeft(rover);
 
-            Assert.Equal("W", marsRover.Direction);
+            Assert.Equal("W", rover.Direction);
         }
 
         [Fact]
         public void SpinRight()
         {
-            Entities.MarsRover marsRover = new Entities.MarsRover(1, 2, "N");
+            Models.MarsRover marsRover = new Models.MarsRover();
+            Rover rover = new Rover(1, 2, "N");
 
-            marsRover.SpinRight();
+            marsRover.SpinRight(rover);
 
-            Assert.Equal("E", marsRover.Direction);
+            Assert.Equal("E", rover.Direction);
         }
 
         [Fact]
         public void Move()
         {
-            Entities.MarsRover marsRover = new Entities.MarsRover(1, 2, "N");
+            Models.MarsRover marsRover = new Models.MarsRover();
+            Rover rover = new Rover(1, 2, "N");
 
-            marsRover.Move();
+            marsRover.Move(rover);
 
-            Assert.Equal(3, marsRover.YCoordinate);
+            Assert.Equal(3, rover.YCoordinate);
         }
 
         [Fact]
         public void MoveToFinalLocation_55_12N_LMLMLMLMM()
         {
-            Entities.MarsRover marsRover = new Entities.MarsRover(1, 2, "N");
+            Models.MarsRover marsRover = new Models.MarsRover();
+            Rover rover = new Rover(1, 2, "N");
             var upperRightCoordinates = new List<int> { 5 , 5};
 
-            marsRover.MoveToFinalLocation("LMLMLMLMM" , upperRightCoordinates);
+            marsRover.MoveToFinalLocation(rover , "LMLMLMLMM" , upperRightCoordinates);
 
-            var expectedOutput = "1 3 " + DirectionEnum.N;
-            var actualOutput = marsRover.XCoordinate + " " + marsRover.YCoordinate + " " + marsRover.Direction;
+            var expectedOutput = "1 3 N";
+            var actualOutput = rover.XCoordinate + " " + rover.YCoordinate + " " + rover.Direction;
             Assert.Equal(expectedOutput , actualOutput);
         }
 
         [Fact]
         public void MoveToFinalLocation_55_33E_MMRMMRMRRM()
         {
-            Entities.MarsRover marsRover = new Entities.MarsRover(3, 3, "E");
+            Models.MarsRover marsRover = new Models.MarsRover();
+            Rover rover = new Rover(3, 3, "E");
             var upperRightCoordinates = new List<int> { 5 , 5 };
 
-            marsRover.MoveToFinalLocation("MMRMMRMRRM" , upperRightCoordinates);
+            marsRover.MoveToFinalLocation(rover , "MMRMMRMRRM" , upperRightCoordinates);
 
-            var expectedOutput = "5 1 " + DirectionEnum.E;
-            var actualOutput = marsRover.XCoordinate + " " + marsRover.YCoordinate + " " + marsRover.Direction;
+            var expectedOutput = "5 1 E";
+            var actualOutput = rover.XCoordinate + " " + rover.YCoordinate + " " + rover.Direction;
             Assert.Equal(expectedOutput, actualOutput);
         }
     }

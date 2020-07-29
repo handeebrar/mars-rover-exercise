@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using MarsRover.Models;
 
 namespace MarsRover
 {
@@ -36,12 +37,13 @@ namespace MarsRover
                 var initialXCoordinate = int.Parse(initialCoordinatesOfTheRover[0]);
                 var initialYCoordinate = int.Parse(initialCoordinatesOfTheRover[1]);
                 var initialDirection = initialCoordinatesOfTheRover[2];
-                Entities.MarsRover marsRover =
-                    new Entities.MarsRover(initialXCoordinate, initialYCoordinate, initialDirection);
-                marsRover.MoveToFinalLocation(roverCommand, upperRightCoordinates);
+                Rover rover =
+                    new Rover(initialXCoordinate, initialYCoordinate, initialDirection);
+                Models.MarsRover marsRover = new Models.MarsRover();
+                marsRover.MoveToFinalLocation(rover,roverCommand,upperRightCoordinates);
 
                 Console.WriteLine(
-                    $"Output = {marsRover.XCoordinate} {marsRover.YCoordinate} {marsRover.Direction}");
+                    $"Output = {rover.XCoordinate} {rover.YCoordinate} {rover.Direction}");
             }
             catch (Exception exception)
             {
