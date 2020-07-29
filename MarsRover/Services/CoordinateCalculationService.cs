@@ -6,13 +6,13 @@ namespace MarsRover.Services
 {
     public class CoordinateCalculationService : ICoordinateCalculationService
     {
-        public static readonly LinkedList<string> directions =
+        public static readonly LinkedList<string> DirectionList =
             new LinkedList<string>(new[] { "N", "E", "S", "W" });
 
         //the rover spins 90 degrees right without moving from its current spot
         public void SpinRight(Rover rover)
         {
-            var currentDirection = directions.Find(rover.Direction);
+            var currentDirection = DirectionList.Find(rover.Direction);
             var rightDirection = currentDirection?.Next ?? currentDirection?.List.First;
 
             rover.Direction = rightDirection?.Value;
@@ -21,7 +21,7 @@ namespace MarsRover.Services
         //the rover spins 90 degrees left without moving from its current spot
         public void SpinLeft(Rover rover)
         {
-            var currentDirection = directions.Find(rover.Direction);
+            var currentDirection = DirectionList.Find(rover.Direction);
             var rightDirection = currentDirection?.Previous ?? currentDirection?.List.Last;
 
             rover.Direction = rightDirection?.Value;

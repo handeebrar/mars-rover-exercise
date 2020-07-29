@@ -37,10 +37,10 @@ namespace MarsRover
                 var initialXCoordinate = int.Parse(initialCoordinatesOfTheRover[0]);
                 var initialYCoordinate = int.Parse(initialCoordinatesOfTheRover[1]);
                 var initialDirection = initialCoordinatesOfTheRover[2];
-                Rover rover =
+                var rover =
                     new Rover(initialXCoordinate, initialYCoordinate, initialDirection);
-                Services.CoordinateCalculationService marsRover = new Services.CoordinateCalculationService();
-                marsRover.MoveToFinalLocation(rover,roverCommand,upperRightCoordinates);
+                var coordinateCalculationService = new Services.CoordinateCalculationService();
+                coordinateCalculationService.MoveToFinalLocation(rover,roverCommand,upperRightCoordinates);
 
                 Console.WriteLine(
                     $"Output = {rover.XCoordinate} {rover.YCoordinate} {rover.Direction}");
