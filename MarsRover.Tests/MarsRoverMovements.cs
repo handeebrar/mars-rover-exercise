@@ -66,5 +66,19 @@ namespace MarsRover.Tests
             var actualOutput = rover.XCoordinate + " " + rover.YCoordinate + " " + rover.Direction;
             Assert.Equal(expectedOutput, actualOutput);
         }
+
+        [Fact]
+        public void MoveToFinalLocation_33_12S_LMRMM()
+        {
+            var coordinateCalculationService = new Services.CoordinateCalculationService();
+            var rover = new Rover(1, 2, "S");
+            var upperRightCoordinates = new List<int> { 3 , 3 };
+
+            coordinateCalculationService.MoveToFinalLocation(rover, "LMRMM", upperRightCoordinates);
+
+            var expectedOutput = "2 0 S";
+            var actualOutput = rover.XCoordinate + " " + rover.YCoordinate + " " + rover.Direction;
+            Assert.Equal(expectedOutput, actualOutput);
+        }
     }
 }
