@@ -8,57 +8,34 @@ namespace MarsRover.Entities
     {
         public int XCoordinate { get; set; }
         public int YCoordinate { get; set; }
-        public DirectionEnum Direction { get; set; }
+        public string Direction { get; set; }
 
         public MarsRover(int initialXCoordinate , int initialYCoordinate , string initialDirection)
         {
             XCoordinate = initialXCoordinate;
             YCoordinate = initialYCoordinate;
-            Direction = (DirectionEnum)Enum.Parse(typeof(DirectionEnum), initialDirection);
+            Direction = initialDirection;
         }
+
+        public static readonly LinkedList<string> directions =
+            new LinkedList<string>(new[] { "N", "E", "S", "W" });
 
         //the rover spins 90 degrees right without moving from its current spot
         public void SpinRight()
         {
-            switch (Direction)
-            {
-                case DirectionEnum.N:
-                    Direction = DirectionEnum.E;
-                    break;
-                case DirectionEnum.E:
-                    Direction = DirectionEnum.S;
-                    break;
-                case DirectionEnum.S:
-                    Direction = DirectionEnum.W;
-                    break;
-                case DirectionEnum.W:
-                    Direction = DirectionEnum.N;
-                    break;
-                default:
-                    throw new Exception($"Invalid direction : {Direction.ToString()}");
-            }
+            var currentDirection = directions.Find(Direction);
+            var rightDirection = currentDirection?.Next ?? currentDirection?.List.First;
+
+            Direction = rightDirection?.Value;
         }
 
         //the rover spins 90 degrees left without moving from its current spot
         public void SpinLeft()
         {
-            switch (Direction)
-            {
-                case DirectionEnum.N:
-                    Direction = DirectionEnum.W;
-                    break;
-                case DirectionEnum.W:
-                    Direction = DirectionEnum.S;
-                    break;
-                case DirectionEnum.S:
-                    Direction = DirectionEnum.E;
-                    break;
-                case DirectionEnum.E:
-                    Direction = DirectionEnum.N;
-                    break;
-                default:
-                    throw new Exception($"Invalid direction : {Direction.ToString()}");
-            }
+            var currentDirection = directions.Find(Direction);
+            var rightDirection = currentDirection?.Previous ?? currentDirection?.List.Last;
+
+            Direction = rightDirection?.Value;
         }
 
         //the rover moves forward one grid point
@@ -66,16 +43,16 @@ namespace MarsRover.Entities
         {
             switch (Direction)
             {
-                case DirectionEnum.N:
+                case "N":
                     YCoordinate += 1;
                     break;
-                case DirectionEnum.E:
+                case "E":
                     XCoordinate += 1;
                     break;
-                case DirectionEnum.S:
+                case "S":
                     YCoordinate -= 1;
                     break;
-                case DirectionEnum.W:
+                case "W":
                     XCoordinate -= 1;
                     break;
                 default:

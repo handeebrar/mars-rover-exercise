@@ -14,7 +14,7 @@ namespace MarsRover.Tests
 
             marsRover.SpinLeft();
 
-            Assert.Equal(DirectionEnum.W, marsRover.Direction);
+            Assert.Equal("W", marsRover.Direction);
         }
 
         [Fact]
@@ -24,7 +24,7 @@ namespace MarsRover.Tests
 
             marsRover.SpinRight();
 
-            Assert.Equal(DirectionEnum.E, marsRover.Direction);
+            Assert.Equal("E", marsRover.Direction);
         }
 
         [Fact]
