@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using MarsRover.Constants;
 using MarsRover.Models;
 using Xunit;
 
@@ -10,7 +9,7 @@ namespace MarsRover.Tests
         [Fact]
         public void SpinLeft()
         {
-            Models.MarsRover marsRover = new Models.MarsRover();
+            Services.CoordinateCalculationService marsRover = new Services.CoordinateCalculationService();
             Rover rover = new Rover(1, 2, "N");
 
             marsRover.SpinLeft(rover);
@@ -21,7 +20,7 @@ namespace MarsRover.Tests
         [Fact]
         public void SpinRight()
         {
-            Models.MarsRover marsRover = new Models.MarsRover();
+            Services.CoordinateCalculationService marsRover = new Services.CoordinateCalculationService();
             Rover rover = new Rover(1, 2, "N");
 
             marsRover.SpinRight(rover);
@@ -32,7 +31,7 @@ namespace MarsRover.Tests
         [Fact]
         public void Move()
         {
-            Models.MarsRover marsRover = new Models.MarsRover();
+            Services.CoordinateCalculationService marsRover = new Services.CoordinateCalculationService();
             Rover rover = new Rover(1, 2, "N");
 
             marsRover.Move(rover);
@@ -43,7 +42,7 @@ namespace MarsRover.Tests
         [Fact]
         public void MoveToFinalLocation_55_12N_LMLMLMLMM()
         {
-            Models.MarsRover marsRover = new Models.MarsRover();
+            Services.CoordinateCalculationService marsRover = new Services.CoordinateCalculationService();
             Rover rover = new Rover(1, 2, "N");
             var upperRightCoordinates = new List<int> { 5 , 5};
 
@@ -57,7 +56,7 @@ namespace MarsRover.Tests
         [Fact]
         public void MoveToFinalLocation_55_33E_MMRMMRMRRM()
         {
-            Models.MarsRover marsRover = new Models.MarsRover();
+            Services.CoordinateCalculationService marsRover = new Services.CoordinateCalculationService();
             Rover rover = new Rover(3, 3, "E");
             var upperRightCoordinates = new List<int> { 5 , 5 };
 

@@ -39,7 +39,7 @@ namespace MarsRover
                 var initialDirection = initialCoordinatesOfTheRover[2];
                 Rover rover =
                     new Rover(initialXCoordinate, initialYCoordinate, initialDirection);
-                Models.MarsRover marsRover = new Models.MarsRover();
+                Services.CoordinateCalculationService marsRover = new Services.CoordinateCalculationService();
                 marsRover.MoveToFinalLocation(rover,roverCommand,upperRightCoordinates);
 
                 Console.WriteLine(

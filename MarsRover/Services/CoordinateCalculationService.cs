@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using MarsRover.Models;
 
-namespace MarsRover.Models
+namespace MarsRover.Services
 {
-    public class MarsRover
+    public class CoordinateCalculationService : ICoordinateCalculationService
     {
         public static readonly LinkedList<string> directions =
             new LinkedList<string>(new[] { "N", "E", "S", "W" });
